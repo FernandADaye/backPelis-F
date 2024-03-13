@@ -1,15 +1,14 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-
-const {getPeli, createPeli, editPeli, deletePeli} =
+const {getPeli, createPeli, editPeli, deletePeli} = require ('../controllers/peliculasControllers')
 
 // crear las rutas funto con sus metodos 
-app.get = ('/peli', getPeli);
+router.get('/getPeli', getPeli);
 
-app.post = ('/crear', createPeli)
+router.post('/crear', createPeli)
 
-app.put = ('/:id',  editPeli)
+router.put('/:id',  editPeli)
 
-app.delete = ('/:id', deletePeli)
+router.delete('/:id', deletePeli)
 
 module.exports = router
