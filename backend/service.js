@@ -8,3 +8,6 @@ const app = express()
 // APP Definido y a imprimir si el puerto conecto 
 app.listen(port,()=>console.log(`El servidor jaló en el puerto ${port}`))
 
+app.get('/app', (req, res) => {
+    res.send('parece que si funciono')
+})
