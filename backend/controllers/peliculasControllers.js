@@ -3,14 +3,19 @@ const getPeli = (req, res) =>{
     res.status (200).json({mensaje:'todo bien con get peli '})
 }
 const createPeli = (req, res) =>{
-    res.status(201).json({mensaje:'createPeli bien'})
+    res.status (201).json({mensaje:'createPeli bien'})
 }
-const editPeli = (res, req) =>{
-    res.status(201).json({mensaje:'editPeli bien'})
+
+const editPeli = (req, res) => {
+    res.status(201).json({mensaje: 'todo bien con peli edit '})
+
 }
-const deletePeli = () => {
-    res.status(200).json({mensaje:'deletePeli bien '})
+const deletePeli = (req, res) => {
+    res.status(201).json({mensaje: 'todo bien con peli delete'})
+
 }
+
+
 
 module.exports = {
     getPeli,
