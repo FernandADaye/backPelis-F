@@ -1,7 +1,10 @@
 const express = require ('express')
+const colors = require('colors')
+const conectdb= require('../backend/config/db')
 const dotenv = require ('dotenv').config()
 const port = process.env.PORT || 1975
 
+conectdb()
 
 // Definir la app con express 
 const app = express()
