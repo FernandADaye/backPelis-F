@@ -13,8 +13,17 @@ const createPeli = async (req, res) => {
 const editPeli = (req, res) => {
   res.status(201).json({ mensaje: "todo bien con peli edit " });
 };
-const deletePeli = (req, res) => {
-  res.status(201).json({ mensaje: "todo bien con peli delete" });
+
+const deletePeli = async(req, res) => {
+    const{titulo} = req.body
+    const userExiste = await Pelicula.findOne({titulo})
+if (userExiste) {
+    const borrarPelicula = await Pelicula.findById(req.params.id) 
+    await Pelicula.deleteOne(borrarPelicula)
+    res.status(200).json({id: res.params.id})
+}else{
+    throw new Error ('no existe eso')
+}
 };
 
 module.exports = {

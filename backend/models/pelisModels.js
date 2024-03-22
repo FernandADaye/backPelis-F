@@ -2,7 +2,7 @@ const mongoose = require( 'mongoose')
 const pelisSchema = mongoose.Schema({
         titulo:{
             type: String, 
-            //            unique: true
+            unique: true
         },
         genero:{
             type: String, 
