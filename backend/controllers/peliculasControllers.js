@@ -10,25 +10,22 @@ const createPeli = async (req, res) => {
   res.status(201).json(nuevaPeli);
 };
 
-const editPeli = (req, res) => {
-  res.status(201).json({ mensaje: "todo bien con peli edit " });
-};
-
-const deletePeli = async(req, res) => {
-    const{titulo} = req.body
-    const userExiste = await Pelicula.findOne({titulo})
-if (userExiste) {
-    const borrarPelicula = await Pelicula.findById(req.params.id) 
-    await Pelicula.deleteOne(borrarPelicula)
-    res.status(200).json({id: res.params.id})
-}else{
-    throw new Error ('no existe eso')
-}
+const deletePeli = async (req, res) => {
+  try {
+      const id = req.params.id;
+      const peliculaEliminada = await Pelicula.findByIdAndDelete(id);
+      if (!peliculaEliminada) {
+          return res.status(404).json({ mensaje: 'La película no  existe (•_•)' });
+      }
+      res.status(200).json({ mensaje: 'peli eliminada ', pelicula: peliculaEliminada });
+  } catch (error) {
+      console.error('Error al eliminar la película:', error);
+      res.status(500).json({ mensaje: 'Ocurrió un error al eliminar la película' });
+  }
 };
 
 module.exports = {
   getPeli,
   createPeli,
-  editPeli,
   deletePeli,
 };

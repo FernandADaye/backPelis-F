@@ -1,5 +1,5 @@
-const mongoose = require( 'mongoose')
-const pelisSchema = mongoose.Schema({
+const mongoose = require('mongoose')
+const pelisSchema = new mongoose.Schema({
         titulo:{
             type: String, 
             unique: true

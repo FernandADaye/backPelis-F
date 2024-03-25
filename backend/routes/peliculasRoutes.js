@@ -7,8 +7,6 @@ router.get('/getPeli', getPeli);
 
 router.post('/crear', createPeli)
 
-router.put ('/:id', editPeli)
-
 router.delete ('/:id', deletePeli)
 
 module.exports = router
