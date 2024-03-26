@@ -13,6 +13,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 app.use('/peli', require ('./routes/peliculasRoutes'))
+app.use('/users', require('./routes/usuariosRoutes'))
+
 // APP Definido y a imprimir si el puerto conecto 
 app.listen(port,()=>console.log(`El servidor jaló en el puerto ${port}`))
 
