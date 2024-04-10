@@ -1,4 +1,4 @@
-const   jwt = require ('jsonwebtoken')
+const jwt = require ('jsonwebtoken')
 const bcrypt =require('bcryptjs')
 const asyncHandler =    require ('express-async-handler')
 const User= require('../models/userModels')
@@ -44,27 +44,24 @@ throw new Error ('no se creo Usuario 😐')
 })
 
 
+const loginUser = asyncHandler( async(req, res) => {
 
-const loginUser = asyncHandler( async(req, res) =>{
+    const {email, password} = req.body 
+    const user = await User.findOne({email})
 
-const {email, password} = req.body
-
-const user = await User.findOne({email})
-
-if (user && (await bcrypt.compare(password, user.password))) {
-res.status(200).json({
-    _id: user.id,
-    name: user.name,
-    email:user.email,
-    token: generarToken(user.id)
+    if (user && (await bcrypt.compare(password, user.password))){
+        res.status(200).json({
+            _id: user.id, 
+            name: user.name, 
+            email:user.email ,
+            token: generarToken(user.id)
+        })
+    } else{
+        res.status(400)
+        throw new Error ('algo está mal')
+    }
+    res.status(201).json({message:' que por fin es login usuario '})
 })
-}else{
-res.status(400)
-throw new Error('no se puedo hacer eso ')
-}
-res.status(201).json({message:'login usuario '})
-})
-
 
 
 const datoUser = asyncHandler( async(req, res) =>{
